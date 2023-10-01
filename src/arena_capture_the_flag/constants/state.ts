@@ -13,6 +13,7 @@ export const state: State = {
     enemyHealers: [],
     rangedAttackers: [],
     enemyRangedAttackers: [],
+    allyCreeps: [],
     enemyCreeps: [],
     towers: [],
     enemyTowers: [],
@@ -27,6 +28,7 @@ interface State {
     enemyHealers: Creep[]
     rangedAttackers: Creep[]
     enemyRangedAttackers: Creep[]
+    allyCreeps: Creep[]
     enemyCreeps: Creep[]
     towers: StructureTower[]
     enemyTowers: StructureTower[]
@@ -61,7 +63,7 @@ export function initialize(): void {
                 state.enemyRangedAttackers.push(creep)
             }
         }
-
+        state.allyCreeps = [...state.attackers, ...state.rangedAttackers]
         state.enemyCreeps = [...state.enemyAttackers, ...state.enemyHealers, ...state.enemyRangedAttackers]
     })
 
@@ -81,5 +83,6 @@ export const refreshState = (): void => {
     state.enemyAttackers = state.enemyAttackers.filter(i => i.hits > 0)
     state.enemyHealers = state.enemyHealers.filter(i => i.hits > 0)
     state.enemyRangedAttackers = state.enemyRangedAttackers.filter(i => i.hits > 0)
+    state.allyCreeps = state.allyCreeps.filter(i => i.hits > 0)
     state.enemyCreeps = state.enemyCreeps.filter(i => i.hits > 0)
 }

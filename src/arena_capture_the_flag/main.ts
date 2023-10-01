@@ -2,6 +2,7 @@
 import { getTicks } from 'game/utils'
 import { initialize, refreshState } from './constants/state'
 import { attack } from './creeps/attack/attacker'
+import { heal } from './creeps/healers/healer'
 import { rangedAttack } from './creeps/rangedAttack/rangedAttacker'
 import { init } from './prototypes/merge.proto'
 import { computeTower } from './towers/tower'
@@ -11,6 +12,7 @@ const _loop = (): void => {
     attack()
     rangedAttack()
     computeTower()
+    heal()
 }
 
 export function loop(): void {
